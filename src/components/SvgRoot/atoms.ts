@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-type Point = [number, number];
+export type Point = [number, number];
 
 export const dotsAtom = atom<Point[]>([]);
 

@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useAtom } from "jotai";
 
 import {
@@ -5,6 +6,8 @@ import {
   handleMouseDownAtom,
   handleMouseUpAtom,
   handleMouseMoveAtom,
+  drawingAtom,
+  Point,
 } from "./atoms";
 
 const SvgDots = () => {
@@ -23,6 +26,22 @@ export const SvgRoot = () => {
   const [, handleMouseUp] = useAtom(handleMouseUpAtom);
   const [, handleMouseDown] = useAtom(handleMouseDownAtom);
   const [, handleMouseMove] = useAtom(handleMouseMoveAtom);
+  // ===  Write only を使わなかったケース ===
+  //
+  // このように記述すると、 drawing の値が変化するたびに SvgRoot コンポーネントが再描画されてしまい、パフォーマンスが悪化する
+  //
+  // const [drawing] = useAtom(drawingAtom);
+  // const [, setDots] = useAtom(dotsAtom);
+  //
+  // const handleMouseMove = useCallback(
+  //   (update: Point) => {
+  //     if (drawing) {
+  //       setDots((prev) => [...prev, update]);
+  //     }
+  //   },
+  //   [drawing, setDots]
+  // );
+  // ======
 
   console.log("coming!");
 
